@@ -1,5 +1,5 @@
 # Course Schedule II
-
+## https://leetcode.com/problems/course-schedule-ii
 
 # Implementation :
 ```java
@@ -49,3 +49,7 @@ class Solution {
     }
 }
 ```
+
+# References :
+1. https://leetcode.com/articles/course-schedule-ii
+2. https://www.youtube.com/watch?v=TJkYn3oqX0k
