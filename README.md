@@ -28,7 +28,7 @@ Explanation: There are a total of 4 courses to take. To take course 3 you should
 1. The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
 2. You may assume that there are no duplicate edges in the input prerequisites.
 
-# Implementation :
+# Implementation : BFS
 ```java
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
