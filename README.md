@@ -28,7 +28,41 @@ Explanation: There are a total of 4 courses to take. To take course 3 you should
 1. The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
 2. You may assume that there are no duplicate edges in the input prerequisites.
 
-# Implementation : BFS
+# Implementation 1 : BFS (without creating a graph representation)
+```java
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        int[] indegree = new int[numCourses];
+        for(int[] prereq : prerequisites) {
+            indegree[prereq[0]]++;
+        }
+        Queue<Integer> q = new ArrayDeque<>();
+        for(int i = 0; i < indegree.length; i++) {
+            if(indegree[i] == 0)
+                q.add(i);
+        }
+        int courseCompleted = 0;
+        int order[] = new int[numCourses];
+        int index = 0;
+        while(!q.isEmpty()) {
+            courseCompleted++;
+            int course = q.poll();
+            order[index++] = course;
+            for(int i = 0; i < prerequisites.length; i++) {
+                int[] prereq = prerequisites[i];
+                if(prereq[1] == course) {
+                    indegree[prereq[0]]--;
+                    if(indegree[prereq[0]] == 0) {
+                    q.add(prereq[0]);
+                   }
+                }
+            }
+        }
+        return index == numCourses ? order : new int[0];
+    }
+}
+```
+# Implementation 2 : BFS (by creating a graph representation)
 ```java
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
