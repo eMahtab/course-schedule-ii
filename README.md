@@ -112,7 +112,9 @@ class Solution {
 ```
 
 ## Observation :
-One important thing to note is, using a Queue may produce a different order of course completion, than the order produced by using a Stack.
+1. We can also use Stack to solve this problem.
+
+2. One important thing to note is, using a Queue may produce a different order of course completion, than the order produced by using a Stack.
 This is because the way Queue works is different than the Stack. Queue is FIFO (First in First out) while Stack is LIFO (Last in First out).
 
 
