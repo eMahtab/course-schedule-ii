@@ -111,6 +111,11 @@ class Solution {
 }
 ```
 
+## Observation :
+One important thing to note is, using a Queue may produce a different order of course completion, than the order produced by using a Stack.
+This is because the way Queue works is different than the Stack. Queue is FIFO (First in First out) while Stack is LIFO (Last in First out).
+
+
 # References :
 1. https://leetcode.com/articles/course-schedule-ii
 2. https://www.youtube.com/watch?v=TJkYn3oqX0k
