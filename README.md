@@ -29,6 +29,15 @@ Explanation: There are a total of 4 courses to take. To take course 3 you should
 2. You may assume that there are no duplicate edges in the input prerequisites.
 
 # Implementation 1 : BFS (without creating a graph representation)
+
+n = number of courses (numCourses)
+
+m = prerequisites.length
+
+**Runtime = O(n * m)**
+
+**Space = O(n)**
+
 ```java
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
@@ -62,7 +71,16 @@ class Solution {
     }
 }
 ```
-# Implementation 2 : BFS (by creating a graph representation)
+# Implementation 2 (creating adjacency list with arraylist) : BFS (by creating a graph representation)
+
+n = number of courses (numCourses)
+
+m = prerequisites.length
+
+**Runtime = O(n + m)**
+
+**Space = O(n + m)**
+
 ```java
 class Solution {
     public int[] findOrder(int numCourses, int[][] prerequisites) {
@@ -107,6 +125,56 @@ class Solution {
         }
         
         return i == numCourses ? topologicalOrder : new int[0];
+    }
+}
+```
+
+## Implementation 2a (creating adjacency list with arraylist) : BFS with Adjacency list
+
+n = number of courses (numCourses)
+
+m = prerequisites.length
+
+**Runtime = O(n + m)**
+
+**Space = O(n + m)**
+
+```java
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        List<List<Integer>> adjacencyList = new ArrayList<>();
+        int[] indegree = new int[numCourses];
+        Queue<Integer> queue = new ArrayDeque<>();
+        int courseCompleted = 0;
+        int[] result = new int[numCourses];
+        int index = 0;
+
+        for(int i = 0; i < numCourses; i++)
+            adjacencyList.add(new ArrayList<>());
+
+        for(int[] prerequisite : prerequisites) {
+            int a = prerequisite[0];
+            int b = prerequisite[1];
+            indegree[a]++;
+            adjacencyList.get(b).add(a);
+        }
+        for(int i = 0; i < numCourses; i++){
+            if(indegree[i] == 0)
+              queue.offer(i);
+        }
+
+        while(!queue.isEmpty()) {
+            int course = queue.remove();
+            courseCompleted++;
+            result[index++] = course;
+            for(int neighbor : adjacencyList.get(course)){
+                indegree[neighbor]--;
+                if(indegree[neighbor] == 0)
+                  queue.offer(neighbor);
+            }
+        }
+
+       return courseCompleted == numCourses ? result : new int[0]; 
     }
 }
 ```
